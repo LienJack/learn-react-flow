@@ -1,5 +1,5 @@
 ---
-title: "第 21 篇：实战：实现节点拖拽和 onNodesChange"
+title: "第 22 篇：实战：实现节点拖拽和 onNodesChange"
 tags:
   - react-flow
   - xyflow
@@ -9,9 +9,9 @@ tags:
   - changes
 ---
 
-# 第 21 篇：实战：实现节点拖拽和 onNodesChange
+# 第 22 篇：实战：实现节点拖拽和 onNodesChange
 
-第 20 篇解决的是“镜头怎么动”。
+第 21 篇解决的是“镜头怎么动”。
 
 这一篇解决的是“图里的实体怎么动”。
 
@@ -82,7 +82,7 @@ triggerNodeChanges
 changes -> applyChanges -> user callback
 ```
 
-第 21 篇要实现的不是完整 `XYDrag`。
+第 22 篇要实现的不是完整 `XYDrag`。
 
 我们要实现它的最小骨架：
 
@@ -139,7 +139,7 @@ src/mini-flow/MiniFlow.tsx             # onNodesChange / drag callbacks
 
 和真实 React Flow 的差异：
 
-| mini-flow 第 21 篇 | 真实 React Flow |
+| mini-flow 第 22 篇 | 真实 React Flow |
 | --- | --- |
 | pointer events 简化实现 | `useDrag + XYDrag + d3-drag` |
 | selection 只作为简化输入 | 完整 selection 第 15 篇那套 click / box / multi / delete |
@@ -151,7 +151,7 @@ src/mini-flow/MiniFlow.tsx             # onNodesChange / drag callbacks
 
 ## 1. 这一篇要解决的问题
 
-第 20 篇已经有：
+第 21 篇已经有：
 
 ```ts
 function screenToFlowPosition(point: XYPosition, viewport: Viewport): XYPosition {
@@ -312,7 +312,7 @@ const onNodesChange = (changes) => {
 
 最终状态由用户决定。
 
-第 21 篇的运行效果是：
+第 22 篇的运行效果是：
 
 ```txt
 按住节点
@@ -425,7 +425,7 @@ system 负责拖拽算法
 store 负责状态和 change 回流
 ```
 
-第 21 篇 mini-flow 不引入完整 store。
+第 22 篇 mini-flow 不引入完整 store。
 
 但仍然保留这个分工：
 
@@ -518,7 +518,7 @@ packages/system/src/xydrag/XYDrag.ts:116
 拖拽不是一次性的事件回调，而是一段持续运行的交互会话。
 ```
 
-第 21 篇的 `useNodeDrag` 也会维护一个 `dragState`。
+第 22 篇的 `useNodeDrag` 也会维护一个 `dragState`。
 
 ### 4.3 getPointerPosition：把事件坐标转成 flow 坐标
 
@@ -549,7 +549,7 @@ packages/system/src/utils/dom.ts:17
 packages/system/src/utils/dom.ts:20
 ```
 
-这就是第 20 篇 `screenToFlowPosition` 的应用场景。
+这就是第 21 篇 `screenToFlowPosition` 的应用场景。
 
 ### 4.4 getDragItems：收集要拖拽的节点
 
@@ -583,7 +583,7 @@ packages/system/src/xydrag/utils.ts:55
 packages/system/src/xydrag/utils.ts:63
 ```
 
-第 21 篇的 mini-flow 会简化为：
+第 22 篇的 mini-flow 会简化为：
 
 ```txt
 id
@@ -692,7 +692,7 @@ packages/react/src/store/index.ts:268
 packages/react/src/store/index.ts:277
 ```
 
-这条链路是第 21 篇必须保留的设计骨架。
+这条链路是第 22 篇必须保留的设计骨架。
 
 ---
 
@@ -736,7 +736,7 @@ updateNodePositions(dragItems, false)
 onNodeDragStop
 ```
 
-mini-flow 的第 21 篇压缩成：
+mini-flow 的第 22 篇压缩成：
 
 ```txt
 MiniNodeView
@@ -784,7 +784,7 @@ onNodeDragStop
 
 ### 6.1 NodeChange
 
-第 21 篇先实现一种 change：
+第 22 篇先实现一种 change：
 
 ```ts
 type NodePositionChange = {
@@ -1080,7 +1080,7 @@ packages/system/src/utils/general.ts:152
 
 多选拖拽时，真实源码还有 `calculateSnapOffset`，避免每个节点分别吸附导致相对位置被破坏。
 
-第 21 篇 mini 版本可以先做一个简单策略：
+第 22 篇 mini 版本可以先做一个简单策略：
 
 ```txt
 以当前被拖节点的 nextPosition 计算 snap delta
@@ -1122,7 +1122,7 @@ function clampNodePosition(
 packages/system/src/utils/graph.ts:393
 ```
 
-第 21 篇只做全局 extent。
+第 22 篇只做全局 extent。
 
 ### 7.6 updateDragItems
 
@@ -1330,7 +1330,7 @@ XYDrag
 
 它是拖拽会话中的工作集。
 
-第 21 篇 mini-flow 也用 `Map<string, NodeDragItem>`，从一开始就保留这个形状。
+第 22 篇 mini-flow 也用 `Map<string, NodeDragItem>`，从一开始就保留这个形状。
 
 ### 8.4 为什么 snap 不能每个节点各自算
 
@@ -1381,7 +1381,7 @@ y <= maxY - height
 
 mini-flow 用固定尺寸或用户传入尺寸。
 
-这是第 19 篇以来一直保留的简化。
+这是第 20 篇以来一直保留的简化。
 
 ### 8.6 为什么 callbacks 和 onNodesChange 都要有
 
@@ -1416,7 +1416,7 @@ mini-flow 也保留这两个出口。
 
 下面是一份完整的实现草图。
 
-它接在第 20 篇的 `MiniFlow` 上。
+它接在第 21 篇的 `MiniFlow` 上。
 
 ### 9.1 类型定义
 
@@ -1882,7 +1882,7 @@ function MiniNodeView({
 
 它从 `useDrag` 拿到 dragging 状态，再把事件、className、style、节点组件组织在一起。
 
-第 21 篇 mini-flow 把这一步简化成 `dragHandlers`。
+第 22 篇 mini-flow 把这一步简化成 `dragHandlers`。
 
 ### 9.7 MiniNodeRenderer 传入运行时上下文
 
@@ -1952,9 +1952,9 @@ useDrag
 NodeComponent
 ```
 
-第 21 篇还没有 selector 和 store，所以 `nodes` 会传得比较多。
+第 22 篇还没有 selector 和 store，所以 `nodes` 会传得比较多。
 
-第 23 篇引入 store / hooks 后，再把它收敛。
+第 24 篇引入 store / hooks 后，再把它收敛。
 
 ### 9.8 MiniFlow props
 
@@ -2044,7 +2044,7 @@ React Flow 的真实实现更复杂：
 
 但这些复杂度都围绕同一条主线展开。
 
-读懂第 21 篇的 mini-flow，回头再看 `XYDrag`，就不会只看到事件处理和一堆条件判断。
+读懂第 22 篇的 mini-flow，回头再看 `XYDrag`，就不会只看到事件处理和一堆条件判断。
 
 你会看到它在守住三件事：
 
@@ -2061,7 +2061,7 @@ change 回流正确
 下一篇进入：
 
 ```txt
-第 22 篇：实战：实现 Handle、ConnectionLine 和 onConnect
+第 23 篇：实战：实现 Handle、ConnectionLine 和 onConnect
 ```
 
 节点拖拽解决的是：

@@ -83,31 +83,34 @@
 18. [性能设计：lookup map、selector、memo、visible elements](./zh/18-performance-lookup-selector-memo-visible-elements.md)  
     聚焦高频交互下的性能设计：lookup map、细粒度 selector、组件拆分、可见元素裁剪和引用复用如何减少无谓重渲染。
 
+19. [React Flow 性能优化手段与原理](./zh/19-react-flow-performance-optimization-principles.md)  
+    从项目落地和面试复盘角度，总结稳定引用、细粒度订阅、高频交互治理、大图渲染策略、节点/边瘦身和性能诊断方法。
+
 ### 第三部分：用 mini-flow 验证理解
 
-19. [实战：实现最小 Graph Renderer](./zh/19-mini-flow-minimal-graph-renderer.md)  
+20. [实战：实现最小 Graph Renderer](./zh/20-mini-flow-minimal-graph-renderer.md)  
     从最小节点和边渲染开始复刻画布骨架，不追求功能完整，而是验证 nodes、edges、NodeRenderer、EdgeRenderer 的基本分工。
 
-20. [实战：实现 viewport、pan、zoom、fitView](./zh/20-mini-flow-viewport-pan-zoom-fitview.md)  
+21. [实战：实现 viewport、pan、zoom、fitView](./zh/21-mini-flow-viewport-pan-zoom-fitview.md)  
     给 mini-flow 加上视口系统，手写 transform、平移、缩放和 fitView，体会 viewport 为什么是图编辑器交互的地基。
 
-21. [实战：实现节点拖拽和 onNodesChange](./zh/21-mini-flow-node-drag-onnodeschange.md)  
+22. [实战：实现节点拖拽和 onNodesChange](./zh/22-mini-flow-node-drag-onnodeschange.md)  
     复刻节点拖拽的最小链路：从 pointer movement 到 flow 坐标，再到 position change 和用户侧状态更新。
 
-22. [实战：实现 Handle、ConnectionLine 和 onConnect](./zh/22-mini-flow-handle-connectionline-onconnect.md)  
+23. [实战：实现 Handle、ConnectionLine 和 onConnect](./zh/23-mini-flow-handle-connectionline-onconnect.md)  
     给 mini-flow 加入连接点、临时连接线和 onConnect 回调，验证连接系统为什么需要独立建模，而不是由边渲染顺手完成。
 
-23. [实战：实现 store、Provider 和 hooks](./zh/23-mini-flow-store-provider-hooks.md)  
+24. [实战：实现 store、Provider 和 hooks](./zh/24-mini-flow-store-provider-hooks.md)  
     把前面分散的状态收拢进 store 和 Provider，再写出最小 hooks，让 mini-flow 从组件组合走向真正的运行时结构。
 
-24. [实战：实现 Controls、Background、MiniMap](./zh/24-mini-flow-controls-background-minimap.md)  
+25. [实战：实现 Controls、Background、MiniMap](./zh/25-mini-flow-controls-background-minimap.md)  
     实现常见插件组件，理解它们如何读取 viewport、节点 bounds 和画布尺寸，并通过公开能力反向控制主画布。
 
-25. [总结：React Flow 源码的架构模式和可复用经验](./zh/25-react-flow-architecture-patterns-summary.md)  
+26. [总结：React Flow 源码的架构模式和可复用经验](./zh/26-react-flow-architecture-patterns-summary.md)  
     收束全系列，提炼 React Flow 在包边界、运行时拆分、交互回流、状态建模和性能优化上的可复用架构经验。
 
 ## 建议阅读顺序
 
-如果你第一次系统读 React Flow 源码，建议按章节顺序阅读。前四篇先建立问题域、概念地图、包边界和 API 地图；第 5 到第 18 篇进入源码核心；第 19 到第 25 篇再通过 mini-flow 把理解落到实现。
+如果你第一次系统读 React Flow 源码，建议按章节顺序阅读。前四篇先建立问题域、概念地图、包边界和 API 地图；第 5 到第 18 篇进入源码核心；第 19 篇补一层项目落地视角的性能优化总结；第 20 到第 26 篇再通过 mini-flow 把理解落到实现。
 
 如果你已经会用 React Flow，但源码读不进去，可以优先看第 3、4、6、7、9、11、12 篇。它们能最快解释：React Flow 为什么不是一个“大 React 组件”，而是一套由数据、视口、渲染和交互共同组成的运行时架构。

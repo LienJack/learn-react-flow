@@ -1,5 +1,5 @@
 ---
-title: "第 25 篇：总结：React Flow 源码的架构模式和可复用经验"
+title: "第 26 篇：总结：React Flow 源码的架构模式和可复用经验"
 tags:
   - react-flow
   - xyflow
@@ -9,7 +9,7 @@ tags:
   - mini-flow
 ---
 
-# 第 25 篇：总结：React Flow 源码的架构模式和可复用经验
+# 第 26 篇：总结：React Flow 源码的架构模式和可复用经验
 
 这组文章一开始就刻意避开了一个诱惑：
 

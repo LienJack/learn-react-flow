@@ -1,5 +1,5 @@
 ---
-title: "第 23 篇：实战：实现 store、Provider 和 hooks"
+title: "第 24 篇：实战：实现 store、Provider 和 hooks"
 tags:
   - react-flow
   - xyflow
@@ -10,13 +10,13 @@ tags:
   - hooks
 ---
 
-# 第 23 篇：实战：实现 store、Provider 和 hooks
+# 第 24 篇：实战：实现 store、Provider 和 hooks
 
-第 20 篇，我们实现了 viewport。
+第 21 篇，我们实现了 viewport。
 
-第 21 篇，我们实现了节点拖拽。
+第 22 篇，我们实现了节点拖拽。
 
-第 22 篇，我们实现了 Handle、ConnectionLine 和 onConnect。
+第 23 篇，我们实现了 Handle、ConnectionLine 和 onConnect。
 
 现在 mini-flow 已经有了一个节点编辑器最核心的几条运行时链路：
 
@@ -220,7 +220,7 @@ React Flow 同时支持：
 
 这就是第 14 篇讲过的 controlled / uncontrolled 分界。
 
-所以，第 23 篇要补上的不是一个“全局变量”，而是一套完整的运行时边界：
+所以，第 24 篇要补上的不是一个“全局变量”，而是一套完整的运行时边界：
 
 ```txt
 MiniFlow props
@@ -838,7 +838,7 @@ nodeLookup map
 
 mini-flow 暂时不做完整 `InternalNode`，但先保留 lookup 的习惯。
 
-因为从第 21 篇的拖拽开始，我们已经遇到这个问题：
+因为从第 22 篇的拖拽开始，我们已经遇到这个问题：
 
 ```txt
 drag move 时根据 id 找节点
@@ -1919,7 +1919,7 @@ uncontrolled: 内部 apply changes
 
 但这些能力还像散落的零件。
 
-第 23 篇把它们收进一个统一结构：
+第 24 篇把它们收进一个统一结构：
 
 ```txt
 MiniFlowProvider
@@ -1961,10 +1961,10 @@ useNodesState / useEdgesState
 下一篇进入：
 
 ```txt
-第 24 篇：实战：实现 Controls、Background、MiniMap
+第 25 篇：实战：实现 Controls、Background、MiniMap
 ```
 
-有了第 23 篇的 store 和 hooks，插件组件就不再需要特殊待遇。
+有了第 24 篇的 store 和 hooks，插件组件就不再需要特殊待遇。
 
 它们会变成同一种模式：
 
@@ -1978,7 +1978,7 @@ useNodesState / useEdgesState
 渲染自己的 UI
 ```
 
-第 24 篇会用三个插件验证这件事：
+第 25 篇会用三个插件验证这件事：
 
 ```txt
 Controls
@@ -1991,13 +1991,13 @@ MiniMap
   验证 nodes + viewport 的二级视图
 ```
 
-也就是说，第 23 篇解决的是：
+也就是说，第 24 篇解决的是：
 
 ```txt
 状态住在哪里？
 ```
 
-第 24 篇解决的是：
+第 25 篇解决的是：
 
 ```txt
 插件怎么共享这套运行时？

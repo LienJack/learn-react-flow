@@ -267,7 +267,7 @@ tags:
 | MiniMap 根据 boundingRect 计算 viewScale/viewBox，渲染 MiniMapNodes，并用 evenodd path 标出当前 viewport mask | `packages/react/src/additional-components/MiniMap/MiniMap.tsx:79`, `packages/react/src/additional-components/MiniMap/MiniMap.tsx:81`, `packages/react/src/additional-components/MiniMap/MiniMap.tsx:157`, `packages/react/src/additional-components/MiniMap/MiniMap.tsx:160`, `packages/react/src/additional-components/MiniMap/MiniMap.tsx:169`, `packages/react/src/additional-components/MiniMap/MiniMap.tsx:178`, `packages/react/src/additional-components/MiniMap/MiniMap.tsx:182` |
 | MiniMapNodes 只订阅 node ids，再由 NodeComponentWrapper 按 id 从 nodeLookup 读取单节点数据，延续 NodeRenderer 的性能分层 | `packages/react/src/additional-components/MiniMap/MiniMapNodes.tsx:14`, `packages/react/src/additional-components/MiniMap/MiniMapNodes.tsx:31`, `packages/react/src/additional-components/MiniMap/MiniMapNodes.tsx:40`, `packages/react/src/additional-components/MiniMap/MiniMapNodes.tsx:42`, `packages/react/src/additional-components/MiniMap/MiniMapNodes.tsx:86`, `packages/react/src/additional-components/MiniMap/MiniMapNodes.tsx:93`, `packages/react/src/additional-components/MiniMap/MiniMapNodes.tsx:130` |
 | XYMinimap 是 system 层 controller，绑定 d3 zoom/selection，把小地图 wheel/pan 转成主画布 panZoom.scaleTo 或 setViewportConstrained | `packages/system/src/xyminimap/index.ts:30`, `packages/system/src/xyminimap/index.ts:43`, `packages/system/src/xyminimap/index.ts:47`, `packages/system/src/xyminimap/index.ts:55`, `packages/system/src/xyminimap/index.ts:70`, `packages/system/src/xyminimap/index.ts:84`, `packages/system/src/xyminimap/index.ts:94`, `packages/system/src/xyminimap/index.ts:105` |
-| 第 25 篇总结的架构模式来自全系列承重链路：system/react 包边界、ReactFlow runtime 外壳、store 状态机、GraphView 渲染分层、interaction controllers、hooks/plugin 扩展面 | `packages/system/src/index.ts:1`, `packages/react/src/index.ts:1`, `packages/react/src/container/ReactFlow/index.tsx:254`, `packages/react/src/store/index.ts:55`, `packages/react/src/container/GraphView/index.tsx:116`, `packages/system/src/xypanzoom/XYPanZoom.ts:36`, `packages/system/src/xydrag/XYDrag.ts:107`, `packages/system/src/xyhandle/XYHandle.ts:60`, `packages/react/src/additional-components/index.ts:1` |
+| 第 26 篇总结的架构模式来自全系列承重链路：system/react 包边界、ReactFlow runtime 外壳、store 状态机、GraphView 渲染分层、interaction controllers、hooks/plugin 扩展面 | `packages/system/src/index.ts:1`, `packages/react/src/index.ts:1`, `packages/react/src/container/ReactFlow/index.tsx:254`, `packages/react/src/store/index.ts:55`, `packages/react/src/container/GraphView/index.tsx:116`, `packages/system/src/xypanzoom/XYPanZoom.ts:36`, `packages/system/src/xydrag/XYDrag.ts:107`, `packages/system/src/xyhandle/XYHandle.ts:60`, `packages/react/src/additional-components/index.ts:1` |
 
 ## 本轮产物
 
@@ -290,13 +290,14 @@ tags:
 - [新版第 16 篇：Hooks API：useReactFlow、useNodes、useEdges、useViewport](./source-guide/16-hooks-api-runtime-adapter.md)
 - [新版第 17 篇：插件组件：Controls、Background、MiniMap、Panel](./source-guide/17-plugin-components-children-runtime.md)
 - [新版第 18 篇：性能设计：lookup map、selector、memo、visible elements](./source-guide/18-performance-lookup-selector-memo-visible-elements.md)
-- [新版第 19 篇：实战：实现最小 Graph Renderer](./source-guide/19-mini-flow-minimal-graph-renderer.md)
-- [新版第 20 篇：实战：实现 viewport、pan、zoom、fitView](./source-guide/20-mini-flow-viewport-pan-zoom-fitview.md)
-- [新版第 21 篇：实战：实现节点拖拽和 onNodesChange](./source-guide/21-mini-flow-node-drag-onnodeschange.md)
-- [新版第 22 篇：实战：实现 Handle、ConnectionLine 和 onConnect](./source-guide/22-mini-flow-handle-connectionline-onconnect.md)
-- [新版第 23 篇：实战：实现 store、Provider 和 hooks](./source-guide/23-mini-flow-store-provider-hooks.md)
-- [新版第 24 篇：实战：实现 Controls、Background、MiniMap](./source-guide/24-mini-flow-controls-background-minimap.md)
-- [新版第 25 篇：总结：React Flow 源码的架构模式和可复用经验](./source-guide/25-react-flow-architecture-patterns-summary.md)
+- [新版第 19 篇：React Flow 性能优化手段与原理](./source-guide/19-react-flow-performance-optimization-principles.md)
+- [新版第 20 篇：实战：实现最小 Graph Renderer](./source-guide/20-mini-flow-minimal-graph-renderer.md)
+- [新版第 21 篇：实战：实现 viewport、pan、zoom、fitView](./source-guide/21-mini-flow-viewport-pan-zoom-fitview.md)
+- [新版第 22 篇：实战：实现节点拖拽和 onNodesChange](./source-guide/22-mini-flow-node-drag-onnodeschange.md)
+- [新版第 23 篇：实战：实现 Handle、ConnectionLine 和 onConnect](./source-guide/23-mini-flow-handle-connectionline-onconnect.md)
+- [新版第 24 篇：实战：实现 store、Provider 和 hooks](./source-guide/24-mini-flow-store-provider-hooks.md)
+- [新版第 25 篇：实战：实现 Controls、Background、MiniMap](./source-guide/25-mini-flow-controls-background-minimap.md)
+- [新版第 26 篇：总结：React Flow 源码的架构模式和可复用经验](./source-guide/26-react-flow-architecture-patterns-summary.md)
 
 ## 旧版文章状态
 

@@ -1860,29 +1860,19 @@ Hooks API
 
 ## 11. 下一篇读什么
 
-下一篇进入实战部分：
+下一篇从项目落地视角继续看性能优化：
 
 ```txt
-第 19 篇：实战：实现最小 Graph Renderer
+第 19 篇：React Flow 性能优化手段与原理
 ```
 
-目标很克制：
-
-- 渲染 nodes。
-- 渲染 edges。
-- 支持 viewport transform。
-- 不实现交互。
-
-对应源码概念是：
+它会把这一篇读源码得到的性能边界，转成真实项目里更容易执行的优化 checklist：
 
 ```txt
-ReactFlow
-GraphView
-Viewport
-NodeRenderer
-EdgeRenderer
+稳定引用
+细粒度订阅
+高频交互治理
+大图渲染策略
+节点 / 边 / CSS 瘦身
+性能诊断方法
 ```
-
-也就是说，下一篇不是“开始搭一个大项目”。
-
-而是用一个最小 renderer，把前面读过的渲染分层真正写一遍。

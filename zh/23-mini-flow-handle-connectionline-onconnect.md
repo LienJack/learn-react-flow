@@ -1,5 +1,5 @@
 ---
-title: "第 22 篇：实战：实现 Handle、ConnectionLine 和 onConnect"
+title: "第 23 篇：实战：实现 Handle、ConnectionLine 和 onConnect"
 tags:
   - react-flow
   - xyflow
@@ -9,9 +9,9 @@ tags:
   - connection
 ---
 
-# 第 22 篇：实战：实现 Handle、ConnectionLine 和 onConnect
+# 第 23 篇：实战：实现 Handle、ConnectionLine 和 onConnect
 
-第 21 篇解决的是节点怎么动。
+第 22 篇解决的是节点怎么动。
 
 这一篇解决的是节点之间的关系怎么被创建。
 
@@ -133,7 +133,7 @@ src/mini-flow/MiniFlow.tsx              # connection state / onConnect
 
 和真实 React Flow 的差异：
 
-| mini-flow 第 22 篇 | 真实 React Flow |
+| mini-flow 第 23 篇 | 真实 React Flow |
 | --- | --- |
 | 直接从 nodes 计算简化 handle 坐标 | 依赖 `InternalNode.internals.handleBounds` |
 | pointer capture 简化监听 | document / shadow root 级 move/up 监听 |
@@ -331,7 +331,7 @@ type HandlePosition = 'left' | 'right' | 'top' | 'bottom';
 
 真实 React Flow 的 `Handle` 组件会在 DOM 上写入 `data-nodeid`、`data-handleid`、`data-handlepos`、className 等信息，让 `XYHandle` 可以从 DOM 反查当前鼠标下方的 handle。
 
-第 22 篇 mini-flow 也会这么做。
+第 23 篇 mini-flow 也会这么做。
 
 ### 3.2 Connection
 
@@ -523,7 +523,7 @@ packages/react/src/components/Handle/index.tsx:146
 packages/react/src/components/Handle/index.tsx:147
 ```
 
-这和第 21 篇 `useDrag` 注入 `getStoreItems` 是同一个模式：
+这和第 22 篇 `useDrag` 注入 `getStoreItems` 是同一个模式：
 
 ```txt
 React 绑定层负责注入环境
@@ -651,7 +651,7 @@ packages/system/src/xyhandle/XYHandle.ts:309
 packages/system/src/xyhandle/XYHandle.ts:315
 ```
 
-第 22 篇 mini-flow 会先实现 strict 模式。
+第 23 篇 mini-flow 会先实现 strict 模式。
 
 也就是：
 
@@ -813,7 +813,7 @@ onConnectEnd(...)
 cancelConnection()
 ```
 
-mini-flow 第 22 篇压缩成：
+mini-flow 第 23 篇压缩成：
 
 ```txt
 <Handle />
@@ -890,7 +890,7 @@ type HandleInfo = {
 
 真实 React Flow 的 handle bounds 也是相对节点测量后，再结合 node position 计算绝对位置。
 
-第 22 篇为了简化，可以根据节点 position 和固定尺寸直接计算 handle center。
+第 23 篇为了简化，可以根据节点 position 和固定尺寸直接计算 handle center。
 
 ### 6.3 Connection
 
@@ -1002,7 +1002,7 @@ export function addEdge(connection: Connection, edges: MiniEdge[]): MiniEdge[] {
 
 ### 7.2 计算 handle 位置
 
-第 22 篇不引入 DOM 测量系统，先根据节点位置和尺寸计算：
+第 23 篇不引入 DOM 测量系统，先根据节点位置和尺寸计算：
 
 ```ts
 function getNodeHandlePosition(
@@ -1042,7 +1042,7 @@ function getNodeHandlePosition(
 
 真实 React Flow 会用 `handleBounds` 和 `getHandlePosition`。
 
-第 22 篇先用固定位置。
+第 23 篇先用固定位置。
 
 ### 7.3 收集所有 handle
 
@@ -1110,7 +1110,7 @@ function getClosestHandle(
 
 真实 `getClosestHandle` 还会先缩小到附近 nodes，再遍历 handles，并在多个 handle 等距时偏好 opposite handle。
 
-第 22 篇 mini 版直接遍历所有 handle。
+第 23 篇 mini 版直接遍历所有 handle。
 
 ### 7.5 构造 Connection
 
@@ -1169,7 +1169,7 @@ function validateConnection(
 }
 ```
 
-第 22 篇只实现 strict mode。
+第 23 篇只实现 strict mode。
 
 loose mode 可以留给扩展。
 
@@ -1452,7 +1452,7 @@ function MiniFlow({
 
 它应该和 edges / nodes 在同一个 viewport 下。
 
-第 6 篇和第 19 篇已经讲过，React Flow 的 `GraphView` 把 `ConnectionLineWrapper` 放在 `EdgeRenderer` 和 `NodeRenderer` 之间：
+第 6 篇和第 20 篇已经讲过，React Flow 的 `GraphView` 把 `ConnectionLineWrapper` 放在 `EdgeRenderer` 和 `NodeRenderer` 之间：
 
 ```txt
 EdgeRenderer
@@ -1460,7 +1460,7 @@ ConnectionLineWrapper
 NodeRenderer
 ```
 
-第 22 篇 mini-flow 也沿用这个层级。
+第 23 篇 mini-flow 也沿用这个层级。
 
 ---
 
@@ -1535,9 +1535,9 @@ React Flow 把这些放在 `XYHandle`。
 
 所以真实 React Flow 把 connection 放在 store。
 
-第 22 篇 mini-flow 还没有 store，先用 `useState`。
+第 23 篇 mini-flow 还没有 store，先用 `useState`。
 
-第 23 篇会把它收进统一 store。
+第 24 篇会把它收进统一 store。
 
 ### 8.4 为什么找 handle 既看距离，也看鼠标下方 DOM
 
@@ -1572,7 +1572,7 @@ source -> target
 
 React Flow 把它抽成 `ConnectionMode.Strict` / `ConnectionMode.Loose`。
 
-第 22 篇只实现 strict。
+第 23 篇只实现 strict。
 
 这是合理简化。
 
@@ -1915,7 +1915,7 @@ addEdge
 7. addEdge 是 Connection -> Edge 的数据工具。
 ```
 
-这和第 21 篇的节点拖拽形成了完整对照：
+这和第 22 篇的节点拖拽形成了完整对照：
 
 ```txt
 XYDrag:
@@ -1944,7 +1944,7 @@ connection runtime
 下一篇进入：
 
 ```txt
-第 23 篇：实战：实现 store、Provider 和 hooks
+第 24 篇：实战：实现 store、Provider 和 hooks
 ```
 
 前面几篇我们已经有：
@@ -1960,7 +1960,7 @@ onConnect
 
 但它们还不是一个真正的 runtime。
 
-第 23 篇会把这些状态组织成：
+第 24 篇会把这些状态组织成：
 
 ```txt
 MiniFlowProvider
@@ -1983,6 +1983,6 @@ useStore
 useReactFlow
 ```
 
-也就是说，第 22 篇解决的是“关系怎么被创建”。
+也就是说，第 23 篇解决的是“关系怎么被创建”。
 
-第 23 篇解决的是“这些状态应该住在哪里”。
+第 24 篇解决的是“这些状态应该住在哪里”。

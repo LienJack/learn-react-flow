@@ -1,5 +1,5 @@
 ---
-title: "第 20 篇：实战：实现 viewport、pan、zoom、fitView"
+title: "第 21 篇：实战：实现 viewport、pan、zoom、fitView"
 tags:
   - react-flow
   - xyflow
@@ -9,7 +9,7 @@ tags:
   - panzoom
 ---
 
-# 第 20 篇：实战：实现 viewport、pan、zoom、fitView
+# 第 21 篇：实战：实现 viewport、pan、zoom、fitView
 
 上一篇我们写了一个最小 Graph Renderer。
 
@@ -134,7 +134,7 @@ fitView
 
 但它会第一次拥有一个真正能操作的“镜头”。
 
-本章在第 19 篇文件树上新增 / 修改：
+本章在第 20 篇文件树上新增 / 修改：
 
 ```txt
 src/mini-flow/types.ts                # 增加 Viewport / Rect / options
@@ -154,7 +154,7 @@ src/mini-flow/MiniViewport.tsx        # 继续只负责应用 transform
 
 和真实 React Flow 的差异：
 
-| mini-flow 第 20 篇 | 真实 React Flow |
+| mini-flow 第 21 篇 | 真实 React Flow |
 | --- | --- |
 | 手写 pointer / wheel adapter | `ZoomPane + XYPanZoom + d3-zoom` |
 | 只做 uncontrolled viewport | 支持 controlled `viewport` / `onViewportChange` |
@@ -167,7 +167,7 @@ src/mini-flow/MiniViewport.tsx        # 继续只负责应用 transform
 
 ## 1. 这一篇要解决的问题
 
-第 19 篇的渲染结构是：
+第 20 篇的渲染结构是：
 
 ```txt
 MiniFlow
@@ -270,7 +270,7 @@ fitView
 
 ## 2. 先看用户 API 或运行效果
 
-第 20 篇完成后，用户仍然这样使用：
+第 21 篇完成后，用户仍然这样使用：
 
 ```tsx
 <MiniFlow nodes={nodes} edges={edges} />
@@ -308,7 +308,7 @@ export function App() {
 const [viewport, setViewport] = useState(defaultViewport);
 ```
 
-渲染层仍然和第 19 篇一样：
+渲染层仍然和第 20 篇一样：
 
 ```tsx
 <MiniViewport viewport={viewport}>
@@ -330,9 +330,9 @@ const [viewport, setViewport] = useState(defaultViewport);
 </div>
 ```
 
-也就是说，第 20 篇不是重写 renderer。
+也就是说，第 21 篇不是重写 renderer。
 
-它是在第 19 篇 renderer 外面补一层 viewport controller。
+它是在第 20 篇 renderer 外面补一层 viewport controller。
 
 这和 React Flow 的真实结构是同一个方向：
 
@@ -348,7 +348,7 @@ NodeRenderer / EdgeRenderer 负责渲染图元素
 
 先把坐标公式写清楚。
 
-第 19 篇里，viewport transform 是：
+第 20 篇里，viewport transform 是：
 
 ```txt
 screenX = flowX * zoom + x
@@ -412,7 +412,7 @@ x: x * tScale + tx
 y: y * tScale + ty
 ```
 
-第 20 篇 mini-flow 的坐标转换就照这个数学关系写。
+第 21 篇 mini-flow 的坐标转换就照这个数学关系写。
 
 注意这里有一个很重要的判断：
 
@@ -440,7 +440,7 @@ viewport.y += 0
 node.position.x += 20 / 2
 ```
 
-这就是为什么第 20 篇只处理 viewport，节点拖拽留到第 21 篇。
+这就是为什么第 21 篇只处理 viewport，节点拖拽留到第 22 篇。
 
 它们都和坐标转换有关，但改变的对象不同：
 
@@ -453,7 +453,7 @@ drag 改 node position
 
 ## 4. 源码入口在哪里
 
-第 20 篇对应的源码入口有五组。
+第 21 篇对应的源码入口有五组。
 
 ### 4.1 ZoomPane：React 层接入 panZoom controller
 
@@ -510,7 +510,7 @@ packages/react/src/container/ZoomPane/index.tsx:109
 把结果同步进 store
 ```
 
-第 20 篇的 mini-flow 可以不写 `XYPanZoom` 类。
+第 21 篇的 mini-flow 可以不写 `XYPanZoom` 类。
 
 但要保留这个边界：
 
@@ -551,7 +551,7 @@ packages/system/src/xypanzoom/XYPanZoom.ts:60
 
 这说明初始 viewport 也要经过约束。
 
-第 20 篇先不实现 `translateExtent`，只实现 `minZoom/maxZoom`。
+第 21 篇先不实现 `translateExtent`，只实现 `minZoom/maxZoom`。
 
 但会把约束写成独立函数：
 
@@ -630,7 +630,7 @@ zoom: transform[2]
 
 zoom 不变。
 
-第 20 篇的 `panBy` 就实现这个最小语义。
+第 21 篇的 `panBy` 就实现这个最小语义。
 
 ### 4.5 fitView：从 bounds 反推 viewport
 
@@ -669,7 +669,7 @@ packages/system/src/utils/general.ts:295
 
 它根据 bounds、viewport 宽高、minZoom、maxZoom 和 padding，算出一个居中 viewport。
 
-这正是第 20 篇要实现的 `fitView`。
+这正是第 21 篇要实现的 `fitView`。
 
 ---
 
@@ -739,7 +739,7 @@ panZoom.setViewport
 store.transform
 ```
 
-第 20 篇的 mini-flow 压缩成：
+第 21 篇的 mini-flow 压缩成：
 
 ```txt
 MiniFlow
@@ -768,7 +768,7 @@ MiniViewport style.transform
 
 ## 6. 关键数据结构
 
-第 20 篇在第 19 篇的基础上补几个类型。
+第 21 篇在第 20 篇的基础上补几个类型。
 
 ### 6.1 Viewport
 
@@ -825,13 +825,13 @@ type ViewportOptions = {
 - controlled viewport
 - wheel / pinch / drag filter
 
-第 20 篇先不写。
+第 21 篇先不写。
 
 我们只保留 `minZoom/maxZoom`，因为它们直接影响 `zoomAtPoint` 和 `fitView`。
 
 ### 6.4 MiniFlowProps
 
-第 19 篇的 props 是：
+第 20 篇的 props 是：
 
 ```ts
 type MiniFlowProps = {
@@ -841,7 +841,7 @@ type MiniFlowProps = {
 };
 ```
 
-第 20 篇改成：
+第 21 篇改成：
 
 ```ts
 type MiniFlowProps = {
@@ -866,9 +866,9 @@ MiniFlow 自己管理 viewport state
 
 真实 React Flow 同时支持 controlled / uncontrolled viewport。
 
-但第 20 篇如果同时写受控模式，文章会从坐标系统跑到状态协议。
+但第 21 篇如果同时写受控模式，文章会从坐标系统跑到状态协议。
 
-controlled viewport 留到第 23 篇 store / hooks 部分更自然。
+controlled viewport 留到第 24 篇 store / hooks 部分更自然。
 
 ---
 
@@ -895,7 +895,7 @@ packages/system/src/xypanzoom/XYPanZoom.ts:60
 packages/system/src/xypanzoom/XYPanZoom.ts:64
 ```
 
-第 20 篇只做 zoom 约束。
+第 21 篇只做 zoom 约束。
 
 ### 7.2 screenToFlowPosition
 
@@ -1091,7 +1091,7 @@ packages/system/src/utils/store.ts:526
 
 fitView 需要节点范围。
 
-第 20 篇仍然使用固定节点尺寸：
+第 21 篇仍然使用固定节点尺寸：
 
 ```ts
 const defaultNodeSize = {
@@ -1147,7 +1147,7 @@ function getNodesBounds(nodes: MiniNode[]): Rect {
 packages/system/src/utils/graph.ts:240
 ```
 
-第 20 篇还没有 internal node，所以直接用用户 node。
+第 21 篇还没有 internal node，所以直接用用户 node。
 
 但概念一样：
 
@@ -1272,7 +1272,7 @@ packages/system/src/utils/graph.ts:369
 packages/system/src/utils/graph.ts:378
 ```
 
-第 20 篇没有动画，所以直接返回 viewport。
+第 21 篇没有动画，所以直接返回 viewport。
 
 ---
 
@@ -1307,7 +1307,7 @@ XYPanZoom 负责改变镜头
 
 这样一来，渲染层和交互层就粘在一起了。
 
-第 20 篇的 mini-flow 也保持这个边界。
+第 21 篇的 mini-flow 也保持这个边界。
 
 `MiniViewport` 仍然只渲染 transform。
 
@@ -1385,7 +1385,7 @@ fitView 看起来只是：
 
 这也是为什么真实 React Flow 需要 `InternalNode` 和 DOM 测量。
 
-第 20 篇用固定节点尺寸绕过测量。
+第 21 篇用固定节点尺寸绕过测量。
 
 但文章必须讲清楚：
 
@@ -1408,9 +1408,9 @@ fitView 看起来只是：
 
 所以 React Flow 在 `useReactFlow` 实例上暴露 `screenToFlowPosition` 和 `flowToScreenPosition`。
 
-第 20 篇虽然还没写 hooks，但先把这两个函数作为独立工具实现。
+第 21 篇虽然还没写 hooks，但先把这两个函数作为独立工具实现。
 
-第 23 篇实现 store / hooks 时，再把它们挂到 `useMiniFlow` 上。
+第 24 篇实现 store / hooks 时，再把它们挂到 `useMiniFlow` 上。
 
 ### 8.5 为什么 zoomAtPoint 不是简单改 zoom
 
@@ -1455,7 +1455,7 @@ y
 
 下面是一份完整的 mini-flow viewport 实现草图。
 
-它接在第 19 篇的 renderer 后面。
+它接在第 20 篇的 renderer 后面。
 
 ### 9.1 类型和工具函数
 
@@ -1659,7 +1659,7 @@ function fitView(
 
 真实 React Flow 会调用 `panZoom.setViewport(viewport, { duration, ease, interpolate })`。
 
-第 20 篇先只关心最终 viewport。
+第 21 篇先只关心最终 viewport。
 
 ### 9.4 MiniFlow 组件接线
 
@@ -1808,7 +1808,7 @@ export function MiniFlow({
 
 第三，没有 controlled viewport。
 
-第 20 篇只做 uncontrolled viewport。
+第 21 篇只做 uncontrolled viewport。
 
 第四，没有动画。
 
@@ -1854,7 +1854,7 @@ viewport 变复杂了。
 
 ## 10. 本篇总结
 
-第 20 篇把第 19 篇的静态 viewport 变成了一个可操作的 viewport runtime。
+第 21 篇把第 20 篇的静态 viewport 变成了一个可操作的 viewport runtime。
 
 这篇最重要的结论不是“我们写了 wheel zoom 和 drag pan”。
 
@@ -1895,7 +1895,7 @@ getViewportForBounds
 fitViewport
 ```
 
-第 20 篇也解释了一个关键边界：
+第 21 篇也解释了一个关键边界：
 
 ```txt
 Viewport 负责应用 transform
@@ -1928,7 +1928,7 @@ Renderer 只消费 transform
 下一篇进入：
 
 ```txt
-第 21 篇：实战：实现节点拖拽和 onNodesChange
+第 22 篇：实战：实现节点拖拽和 onNodesChange
 ```
 
 现在我们已经能把 screen 坐标转成 flow 坐标。
@@ -1965,6 +1965,6 @@ updateNodePositions
 triggerNodeChanges
 ```
 
-也就是说，第 20 篇解决的是“镜头怎么动”。
+也就是说，第 21 篇解决的是“镜头怎么动”。
 
-第 21 篇解决的是“图里的实体怎么动”。
+第 22 篇解决的是“图里的实体怎么动”。

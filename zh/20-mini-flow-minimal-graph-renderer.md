@@ -1,5 +1,5 @@
 ---
-title: "第 19 篇：实战：实现最小 Graph Renderer"
+title: "第 20 篇：实战：实现最小 Graph Renderer"
 tags:
   - react-flow
   - xyflow
@@ -8,7 +8,7 @@ tags:
   - renderer
 ---
 
-# 第 19 篇：实战：实现最小 Graph Renderer
+# 第 20 篇：实战：实现最小 Graph Renderer
 
 从这一篇开始，我们终于进入 `mini-flow` 实战。
 
@@ -33,7 +33,7 @@ tags:
 最后用 mini-flow 复刻关键机制，验证我们真的理解了源码
 ```
 
-所以第 19 篇的关键词不是“造库”，而是“验模”。
+所以第 20 篇的关键词不是“造库”，而是“验模”。
 
 我们要验证的是一个很小但很关键的判断：
 
@@ -125,7 +125,7 @@ flowchart LR
     F["children 插件模型"] --> F1["24 Controls / Background / MiniMap"]
 ```
 
-从这一篇开始，mini-flow 代码建议按同一棵文件树累积。第 19 篇先新增：
+从这一篇开始，mini-flow 代码建议按同一棵文件树累积。第 20 篇先新增：
 
 ```txt
 src/mini-flow/types.ts
@@ -150,10 +150,10 @@ src/mini-flow/mini-flow.css
 
 | 暂不实现 | 为什么 |
 | --- | --- |
-| store / Provider | 先验证 renderer 分层，状态中心第 23 篇再引入 |
+| store / Provider | 先验证 renderer 分层，状态中心第 24 篇再引入 |
 | DOM 测量 / InternalNode | 先用固定 width / height，避免混入测量系统 |
-| handle / connection | 先用节点中心连线，第 22 篇再补连接端点 |
-| pan / zoom 事件 | 第 20 篇专门验证 viewport runtime |
+| handle / connection | 先用节点中心连线，第 23 篇再补连接端点 |
+| pan / zoom 事件 | 第 21 篇专门验证 viewport runtime |
 
 ---
 
@@ -243,7 +243,7 @@ packages/react/src/container/GraphView/index.tsx:198
 
 portal containers 负责把 edge label、toolbar、viewport portal 这类扩展内容放到正确层级。
 
-这就是第 19 篇要验证的结构：
+这就是第 20 篇要验证的结构：
 
 ```txt
 graph data
@@ -425,7 +425,7 @@ const defaultNodeSize = {
 
 它会通过 DOM 测量把节点尺寸写进内部节点结构。第 8 篇讲过，用户传入的 `Node` 会被增强成 `InternalNode`，里面有 `measured`、`positionAbsolute`、`handleBounds` 等运行时字段。
 
-但第 19 篇不做测量。
+但第 20 篇不做测量。
 
 原因很简单：
 
@@ -445,7 +445,7 @@ const defaultNodeSize = {
 
 `ReactFlow` 主组件很大，因为它接收大量用户 props。
 
-但对第 19 篇最重要的是它的收尾部分：
+但对第 20 篇最重要的是它的收尾部分：
 
 ```txt
 packages/react/src/container/ReactFlow/index.tsx:300
@@ -461,7 +461,7 @@ children 是插件入口
 Wrapper 是 provider / store 边界
 ```
 
-第 19 篇暂时不实现 `Wrapper` 和 `StoreUpdater`。
+第 20 篇暂时不实现 `Wrapper` 和 `StoreUpdater`。
 
 但 `MiniFlow` 这个入口组件要保留“运行时门面”的形状。
 
@@ -477,7 +477,7 @@ packages/react/src/container/GraphView/index.tsx:116
 
 `GraphView` 把 `FlowRenderer`、`Viewport`、`EdgeRenderer`、`ConnectionLineWrapper`、`NodeRenderer` 组合在一起。
 
-第 19 篇的 `MiniFlow` 会直接借这个骨架：
+第 20 篇的 `MiniFlow` 会直接借这个骨架：
 
 ```txt
 MiniFlow
@@ -494,11 +494,11 @@ MiniNodeRenderer
 
 我们也先把 `ConnectionLineWrapper` 删除。
 
-因为连接系统第 22 篇再写。
+因为连接系统第 23 篇再写。
 
 我们也先不放 portal containers。
 
-因为 children 插件模型第 24 篇再写。
+因为 children 插件模型第 25 篇再写。
 
 剩下的就是最小 Graph Renderer。
 
@@ -524,7 +524,7 @@ packages/react/src/container/Viewport/index.tsx:16
 
 把它放到 `.react-flow__viewport` 的 `style.transform` 上。
 
-第 19 篇的 `MiniViewport` 会做同一件事。
+第 20 篇的 `MiniViewport` 会做同一件事。
 
 只是我们的 transform 暂时来自 prop，不来自 store。
 
@@ -551,7 +551,7 @@ NodeRenderer 只订阅 node ids。
 单个 node 高频更新时，不要让 NodeRenderer 每次重新跑 nodes.map。
 ```
 
-第 19 篇不会实现这个优化。
+第 20 篇不会实现这个优化。
 
 但我们要把它写进设计预留里：
 
@@ -649,7 +649,7 @@ NodeWrapper
   渲染用户节点组件
 ```
 
-第 19 篇的 mini 版本压缩成：
+第 20 篇的 mini 版本压缩成：
 
 ```txt
 MiniFlow
@@ -751,7 +751,7 @@ packages/react/src/components/NodeWrapper/index.tsx:203
 packages/react/src/components/NodeWrapper/index.tsx:205
 ```
 
-第 19 篇先把两者合并。
+第 20 篇先把两者合并。
 
 这是有意简化，不是忘了内部节点。
 
@@ -829,9 +829,9 @@ React 层 store 里常用的 `transform` 则是数组形态：
 [x, y, zoom]
 ```
 
-第 19 篇直接使用对象形态，便于阅读。
+第 20 篇直接使用对象形态，便于阅读。
 
-第 20 篇写 pan / zoom / fitView 时，再把它和 transform 计算对应起来。
+第 21 篇写 pan / zoom / fitView 时，再把它和 transform 计算对应起来。
 
 ---
 
@@ -861,7 +861,7 @@ function createNodeLookup(nodes: MiniNode[]) {
 
 这里暂时不用 `edgeLookup`。
 
-原因是第 19 篇没有按 id 单独更新 edge，也没有 selection、reconnect、visible edge ids。
+原因是第 20 篇没有按 id 单独更新 edge，也没有 selection、reconnect、visible edge ids。
 
 但是 `nodeLookup` 必须有。
 
@@ -927,7 +927,7 @@ HTML 渲染节点
 
 React Flow 的内置边组件也是围绕 SVG path 展开的。第 13 篇已经读过 `getStraightPath`、`getBezierPath`、`getSmoothStepPath`。
 
-第 19 篇只实现最小直线：
+第 20 篇只实现最小直线：
 
 ```ts
 function getStraightPath(source: XYPosition, target: XYPosition) {
@@ -964,7 +964,7 @@ React Flow 选择让 `Viewport` 成为统一 transform 容器：
 packages/react/src/container/Viewport/index.tsx:16
 ```
 
-第 19 篇也这样做。
+第 20 篇也这样做。
 
 最小实现里：
 
@@ -988,7 +988,7 @@ transform-origin: 0 0;
 
 否则缩放会围绕元素中心，而不是围绕 flow 坐标原点。
 
-这会让第 20 篇的 zoomAtPoint 变得很难解释。
+这会让第 21 篇的 zoomAtPoint 变得很难解释。
 
 ### 7.5 为什么 node 使用 absolute + translate
 
@@ -1005,7 +1005,7 @@ packages/react/src/components/NodeWrapper/index.tsx:203
 packages/react/src/components/NodeWrapper/index.tsx:205
 ```
 
-第 19 篇也使用 `position: absolute` 加 `transform`。
+第 20 篇也使用 `position: absolute` 加 `transform`。
 
 而不是用 normal flow。
 
@@ -1052,7 +1052,7 @@ lookup 适合运行时：
 - selection 查 node 快。
 - visible elements 判断快。
 
-第 19 篇只用到 `nodeLookup`。
+第 20 篇只用到 `nodeLookup`。
 
 但这个边界一旦建立，后面的 store 就很自然。
 
@@ -1068,7 +1068,7 @@ lookup 适合运行时：
 - parent node 要计算 children bounds。
 - MiniMap 要画节点缩略图。
 
-但第 19 篇不做这些。
+但第 20 篇不做这些。
 
 我们先用固定尺寸。
 
@@ -1082,7 +1082,7 @@ lookup 适合运行时：
 没有测量系统时，renderer 最小形态是什么？
 ```
 
-然后第 21 篇、第 23 篇再逐步把测量、store、hooks 加回来。
+然后第 22 篇、第 24 篇再逐步把测量、store、hooks 加回来。
 
 ### 8.3 先中心连线，不做 handle
 
@@ -1102,7 +1102,7 @@ lookup 适合运行时：
 
 这些都在第 12 篇和第 13 篇读过。
 
-第 19 篇先使用中心点：
+第 20 篇先使用中心点：
 
 ```txt
 source center -> target center
@@ -1120,7 +1120,7 @@ edge renderer 如何依赖 node geometry
 handle 系统如何决定连接点
 ```
 
-handle 会在第 22 篇回来。
+handle 会在第 23 篇回来。
 
 ### 8.4 先不引入 store
 
@@ -1151,9 +1151,9 @@ selector 如何缩小订阅范围
 controlled / uncontrolled 如何统一
 ```
 
-这些问题会在第 23 篇集中处理。
+这些问题会在第 24 篇集中处理。
 
-如果第 19 篇就引入 store，读者会误以为：
+如果第 20 篇就引入 store，读者会误以为：
 
 ```txt
 有 store 才能渲染节点和边
@@ -1178,7 +1178,7 @@ store 描述运行时状态如何流动
 
 第 18 篇已经解释过，这样可以避免单个节点高频更新时让父 renderer 反复跑 `nodes.map()`。
 
-第 19 篇为了保持最小，先写：
+第 20 篇为了保持最小，先写：
 
 ```tsx
 nodes.map((node) => <MiniNodeView key={node.id} node={node} />)
@@ -1354,7 +1354,7 @@ export function MiniFlow({
 
 真实 `ReactFlow` 会通过 `Wrapper` 和 `StoreUpdater` 把 props 同步到 store。
 
-第 19 篇没有 store，所以 `MiniFlow` 直接把 props 交给 renderer。
+第 20 篇没有 store，所以 `MiniFlow` 直接把 props 交给 renderer。
 
 这个差异是刻意保留的。
 
@@ -1450,7 +1450,7 @@ mini-flow__nodes
 
 第三，`MiniNodeRenderer` 当前直接 map nodes。
 
-这在第 19 篇是可以接受的。
+这在第 20 篇是可以接受的。
 
 但未来如果实现 drag，就要向真实源码靠拢：
 
@@ -1728,7 +1728,7 @@ MiniNodeRenderer
 - selection 要知道节点 bounds。
 - store 要把这些变化组织成可订阅状态。
 
-如果第 19 篇没有把渲染分层打牢，后面的每个功能都会变成“往组件里塞逻辑”。
+如果第 20 篇没有把渲染分层打牢，后面的每个功能都会变成“往组件里塞逻辑”。
 
 现在我们有了一个可以承重的最小骨架。
 
@@ -1739,12 +1739,12 @@ MiniNodeRenderer
 下一篇进入：
 
 ```txt
-第 20 篇：实战：实现 viewport、pan、zoom、fitView
+第 21 篇：实战：实现 viewport、pan、zoom、fitView
 ```
 
-第 19 篇里，viewport 只是一个静态 prop。
+第 20 篇里，viewport 只是一个静态 prop。
 
-第 20 篇会让它变成真正的画布控制系统：
+第 21 篇会让它变成真正的画布控制系统：
 
 - wheel zoom
 - drag pan
@@ -1764,13 +1764,13 @@ XYPanZoom
 坐标转换工具
 ```
 
-也就是说，第 19 篇解决的是：
+也就是说，第 20 篇解决的是：
 
 ```txt
 图如何在 viewport 里显示？
 ```
 
-第 20 篇解决的是：
+第 21 篇解决的是：
 
 ```txt
 viewport 自己如何被用户操作？

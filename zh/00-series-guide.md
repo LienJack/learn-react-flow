@@ -251,15 +251,16 @@ flowchart TD
     ST --- ST_NOTE
 ```
 
-第三部分再手写 mini-flow：
+然后先补一篇性能优化落地总结，再进入 mini-flow：
 
-19. 实战：实现最小 Graph Renderer
-20. 实战：实现 viewport、pan、zoom、fitView
-21. 实战：实现节点拖拽和 onNodesChange
-22. 实战：实现 Handle、ConnectionLine 和 onConnect
-23. 实战：实现 store、Provider 和 hooks
-24. 实战：实现 Controls、Background、MiniMap
-25. 总结：React Flow 源码的架构模式和可复用经验
+19. React Flow 性能优化手段与原理
+20. 实战：实现最小 Graph Renderer
+21. 实战：实现 viewport、pan、zoom、fitView
+22. 实战：实现节点拖拽和 onNodesChange
+23. 实战：实现 Handle、ConnectionLine 和 onConnect
+24. 实战：实现 store、Provider 和 hooks
+25. 实战：实现 Controls、Background、MiniMap
+26. 总结：React Flow 源码的架构模式和可复用经验
 
 ## 五、怎么读最稳？
 
@@ -275,8 +276,8 @@ flowchart TD
 09 -> 10 -> 11 -> 12
 然后看交互系统：坐标、panzoom、drag、handle。
 
-13 -> 14 -> 15 -> 16 -> 17 -> 18
-最后补边路径、状态模式、选择、hooks、插件和性能。
+13 -> 14 -> 15 -> 16 -> 17 -> 18 -> 19
+最后补边路径、状态模式、选择、hooks、插件、源码性能设计和项目性能优化。
 ```
 
 如果你已经会用 React Flow，但源码读不进去，优先看：
@@ -287,7 +288,7 @@ flowchart TD
 
 这几篇能最快解释“为什么源码不是一个大组件”。
 
-如果你想自己写 mini-flow，先不要急着看第 19 篇。先读完前 12 篇，因为 mini-flow 的价值不是“把功能做出来”，而是验证你是否理解：
+如果你想自己写 mini-flow，先不要急着看第 20 篇。先读完前 12 篇，因为 mini-flow 的价值不是“把功能做出来”，而是验证你是否理解：
 
 ```txt
 数据模型为什么这样拆？

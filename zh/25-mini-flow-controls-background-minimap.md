@@ -1,5 +1,5 @@
 ---
-title: "第 24 篇：实战：实现 Controls、Background、MiniMap"
+title: "第 25 篇：实战：实现 Controls、Background、MiniMap"
 tags:
   - react-flow
   - xyflow
@@ -11,9 +11,9 @@ tags:
   - plugin
 ---
 
-# 第 24 篇：实战：实现 Controls、Background、MiniMap
+# 第 25 篇：实战：实现 Controls、Background、MiniMap
 
-第 23 篇我们把 mini-flow 的运行时状态收进了 store：
+第 24 篇我们把 mini-flow 的运行时状态收进了 store：
 
 ```txt
 MiniFlowProvider
@@ -62,7 +62,7 @@ Controls / Background / MiniMap 作为 children 接入这个 runtime
 
 它们只是普通 React children。
 
-真正让它们工作的，是第 23 篇建立的共享 store。
+真正让它们工作的，是第 24 篇建立的共享 store。
 
 这一篇我们用 mini-flow 实现三个插件：
 
@@ -109,7 +109,7 @@ src/mini-flow/mini-flow.css
 
 和真实 React Flow 的差异：
 
-| mini-flow 第 24 篇 | 真实 React Flow |
+| mini-flow 第 25 篇 | 真实 React Flow |
 | --- | --- |
 | MiniMap 第一版只展示 | `XYMinimap` 支持 pan / zoom 主画布 |
 | Panel 只做固定定位 | React Flow 还处理 className、style、position 约定 |
@@ -298,7 +298,7 @@ function NodeCounter() {
 它在 MiniFlowProvider 子树里
 ```
 
-这就是第 23 篇的 store 和 hooks 在这一篇发挥作用的地方。
+这就是第 24 篇的 store 和 hooks 在这一篇发挥作用的地方。
 
 ---
 
@@ -568,7 +568,7 @@ const { boundingRect, viewBB, panZoom } = useStore(selector, shallow);
 
 ## 6. 关键数据结构
 
-第 23 篇的 store 还不够支持第 24 篇。
+第 24 篇的 store 还不够支持第 25 篇。
 
 我们需要补几类字段和 helper。
 
@@ -1241,7 +1241,7 @@ Provider 边界变得重要
 插件之间的层级和 z-index 要由 CSS 管理
 ```
 
-这也是为什么第 23 篇先实现 store 和 Provider，第 24 篇再做插件。
+这也是为什么第 24 篇先实现 store 和 Provider，第 25 篇再做插件。
 
 如果没有 Provider，children 插件模式只是 JSX 语法糖。
 
@@ -1570,7 +1570,7 @@ wheel
 
 最后，`MiniFlow` 不需要改太多。
 
-第 23 篇已经写成：
+第 24 篇已经写成：
 
 ```tsx
 export function MiniFlow(props: MiniFlowProps) {
@@ -1584,7 +1584,7 @@ export function MiniFlow(props: MiniFlowProps) {
 }
 ```
 
-第 24 篇只是在 `children` 里放插件：
+第 25 篇只是在 `children` 里放插件：
 
 ```tsx
 <MiniFlow defaultNodes={nodes} defaultEdges={edges}>
@@ -1660,7 +1660,7 @@ packages/system/src/xyminimap/index.ts
 下一篇是整个系列的收束：
 
 ```txt
-第 25 篇：总结：React Flow 源码的架构模式和可复用经验
+第 26 篇：总结：React Flow 源码的架构模式和可复用经验
 ```
 
 我们会把前 24 篇的内容重新压缩成几条架构经验：
